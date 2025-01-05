@@ -1,35 +1,33 @@
 public class Connect4 {
-    public static final int ROWS = 6; // A tábla sorainak száma
-    public static final int COLUMNS = 7; // A tábla oszlopainak száma
-    private char[][] board; // A játéktábla
-    private char currentPlayer; // Az aktuális játékos ('X' vagy 'O')
+    public static final int ROWS = 6; 
+    public static final int COLUMNS = 7; 
+    private char[][] board; 
+    private char currentPlayer; 
 
-    // Konstruktor
     public Connect4() {
         board = new char[ROWS][COLUMNS];
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLUMNS; j++) {
-                board[i][j] = ' '; // Kezdetben minden cella üres
+                board[i][j] = ' '; 
             }
         }
-        currentPlayer = 'X'; // Az X játékos kezd
+        currentPlayer = 'X'; 
     }
 
     // Egy lépés végrehajtása egy oszlopban
     public boolean makeMove(int column, char player) {
         if (column < 0 || column >= COLUMNS) {
-            return false; // Érvénytelen oszlop
+            return false;
         }
         for (int row = ROWS - 1; row >= 0; row--) {
             if (board[row][column] == ' ') {
                 board[row][column] = player;
-                return true; // Sikeres lépés
+                return true;
             }
         }
-        return false; // Az oszlop tele van
+        return false;
     }
 
-    // A tábla egy cellájának lekérdezése
     public char getBoardCell(int row, int column) {
         if (row < 0 || row >= ROWS || column < 0 || column >= COLUMNS) {
             throw new IllegalArgumentException("Érvénytelen cella index.");
@@ -79,17 +77,17 @@ public class Connect4 {
             }
         }
 
-        return false; // Nincs győzelem
+        return false; 
     }
 
 
     public boolean isBoardFull() {
         for (int col = 0; col < COLUMNS; col++) {
             if (board[0][col] == ' ') {
-                return false; // Van még üres hely
+                return false; 
             }
         }
-        return true; // A tábla tele van
+        return true; 
     }
 
 
@@ -97,12 +95,10 @@ public class Connect4 {
         return currentPlayer;
     }
 
-    // Az aktuális játékos beállítása
     public void setCurrentPlayer(char player) {
         this.currentPlayer = player;
     }
 
-    // A tábla kiírása (opcionális, a tesztekhez nem szükséges)
     public void printBoard() {
         for (int i = 0; i < ROWS; i++) {
             for (int j = 0; j < COLUMNS; j++) {
